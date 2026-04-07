@@ -1,4 +1,4 @@
-# 🔍 Semantic Diffing for Evolving Knowledge Graphs
+# Semantic Diffing for Evolving Knowledge Graphs
 
 Track how entities and relationships in a knowledge graph evolve as new documents arrive.
 
