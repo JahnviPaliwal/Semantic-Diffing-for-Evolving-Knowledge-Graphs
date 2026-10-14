@@ -50,6 +50,7 @@ app = FastAPI(
     openapi_url="/api/openapi.json",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
+    redirect_slashes=False,
     lifespan=lifespan,
 )
 
@@ -71,9 +72,21 @@ app.add_middleware(RequestContextMiddleware)
 # 3. Exception handlers
 register_exception_handlers(app)
 
-# 4. Routers (mount under both /api and /api/v1 for seamless compatibility)
-app.include_router(health.router)
-for prefix in ["/api", "/api/v1"]:
+
+# Root health & status endpoints
+@app.get("/", tags=["Health"])
+@app.get("/api", tags=["Health"])
+def root_status():
+    return {
+        "status": "healthy",
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "mode": "vercel_serverless" if os.getenv("VERCEL") == "1" else "standard",
+    }
+
+
+# 4. Routers (mount under multiple prefixes for 100% routing resilience across Vercel rewrites and reverse proxies)
+for prefix in ["", "/v1", "/api", "/api/v1"]:
     app.include_router(health.router, prefix=prefix)
     app.include_router(auth.router, prefix=prefix)
     app.include_router(projects.router, prefix=prefix)

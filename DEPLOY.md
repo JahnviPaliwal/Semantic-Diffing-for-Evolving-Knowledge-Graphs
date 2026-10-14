@@ -29,6 +29,50 @@ This guide covers deployment strategies for **Semantic Diffing for Evolving Know
                          +--------------------------+              +--------------------------+
 ```
 
+## 0. Zero-Config 100% Free Deployment (Deploy on Vercel ONLY)
+
+Deploy the **entire stack** (React 18 + Vite frontend and FastAPI Python backend) in a **single 100% free Vercel deployment** with zero external servers, zero credit card requirements, and zero CORS configuration!
+
+### Architecture on Vercel:
+```
+                      Single Vercel Domain: https://your-project.vercel.app
+                                       |
+                   +-------------------+-------------------+
+                   |                                       |
+                   v (/*)                                  v (/api/*)
+       +----------------------+               +-----------------------+
+       | React 18 / Vite SPA  |               | Serverless FastAPI    |
+       | Built to static dist |               | Python 3.10+ Lambda   |
+       +----------------------+               +-----------+-----------+
+                                                          |
+                                              +-----------+-----------+
+                                              | Writable /tmp storage |
+                                              | NetworkX In-Memory    |
+                                              | SQLite at /tmp/app.db |
+                                              +-----------------------+
+```
+
+### 3-Step Vercel Deployment Instructions:
+
+1. **Import Repository in Vercel**:
+   - Go to [vercel.com/new](https://vercel.com/new).
+   - Select your GitHub repository: `Semantic-Diffing-for-Evolving-Knowledge-Graphs`.
+
+2. **Leave Project Settings as Defaults**:
+   - Vercel will automatically read `vercel.json` from the repository root.
+   - **Framework Preset**: Other (or default).
+   - **Root Directory**: `./` (leave default).
+   - **Build Command**: Automatically configured (`cd frontend && npm install && npm run build`).
+   - **Output Directory**: Automatically configured (`frontend/dist`).
+
+3. **(Optional) Environment Variables**:
+   - `GROQ_API_KEY` *(Optional)*: Your free Groq API key (`gsk_...`). If omitted, users can enter their ephemeral Groq API key directly in the UI with zero database persistence.
+   - `DISABLE_HEAVY_EMBEDDINGS`: Automatically set to `1` by `api/index.py` for sub-second serverless execution and small lambda bundle size (< 50MB).
+
+4. **Click Deploy**:
+   - Vercel installs Python serverless dependencies from root `requirements.txt` and compiles the React SPA.
+   - In ~60 seconds, your application is live at `https://<your-project>.vercel.app`!
+
 ---
 
 ## 1. Quick Start: Single-Host Docker Compose

@@ -4,6 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/Frontend-React%2018%20%2B%20Vite%20%2B%20TS-61DAFB.svg)](https://react.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC.svg)](https://tailwindcss.com)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel%20Monorepo-black.svg?logo=vercel)](https://vercel.com)
 [![Docker](https://img.shields.io/badge/Deploy-Docker%20Compose-2496ED.svg)](https://docker.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -218,6 +219,24 @@ cd frontend
 npm test          # Vitest component tests
 npm run build     # TypeScript check and Vite production bundle
 ```
+
+---
+
+## Deployment Options
+
+### 1. Deploy on Vercel (100% Free Monorepo)
+Deploy both the React 18 frontend and the FastAPI serverless backend under a **single Vercel deployment** with zero external servers and zero CORS configuration:
+1. Import the repository at [vercel.com/new](https://vercel.com/new).
+2. Leave all settings default (build and routing are auto-configured via `vercel.json` and `api/index.py`).
+3. *(Optional)* Add `GROQ_API_KEY` in Environment Variables (or let users enter their own ephemeral key in the app).
+4. Click **Deploy**. The entire app and all `/api/*` endpoints are live instantly at `https://<your-app>.vercel.app`.
+
+### 2. Multi-Container Docker Compose
+```bash
+# Launch PostgreSQL, FastAPI backend, and Nginx React frontend
+docker compose up -d --build
+```
+For complete production guides, see [DEPLOY.md](DEPLOY.md).
 
 ---
 

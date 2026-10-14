@@ -153,12 +153,22 @@ class VersionService:
         db.add(job)
         db.commit()
 
-        # Enqueue background task with in-memory groq_api_key
-        background_tasks.add_task(
-            run_extraction_worker, job_id, project_id, saved_path, filename, groq_api_key=groq_api_key
-        )
-
-        return VersionUploadResponse(
-            job_id=job_id,
-            message="Version upload queued for processing. Subscribe to SSE or poll for status.",
-        )
+        # Enqueue background task with in-memory groq_api_key.
+        # On Vercel serverless environments, background tasks freeze after response return.
+        # Execute synchronously inline on Vercel so extraction completes seamlessly.
+        if os.getenv("VERCEL") == "1":
+            run_extraction_worker(
+                job_id, project_id, saved_path, filename, groq_api_key=groq_api_key
+            )
+            return VersionUploadResponse(
+                job_id=job_id,
+                message="Version upload processed and knowledge graph constructed successfully.",
+            )
+        else:
+            background_tasks.add_task(
+                run_extraction_worker, job_id, project_id, saved_path, filename, groq_api_key=groq_api_key
+            )
+            return VersionUploadResponse(
+                job_id=job_id,
+                message="Version upload queued for processing. Subscribe to SSE or poll for status.",
+            )

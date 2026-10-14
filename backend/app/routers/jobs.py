@@ -26,6 +26,7 @@ def get_job_status(
     return JobService.get_job_with_ownership(db, job_id, current_user)
 
 
+@router.get("/{job_id}/events")
 @router.get("/{job_id}/stream")
 async def stream_job_progress(
     job_id: str,

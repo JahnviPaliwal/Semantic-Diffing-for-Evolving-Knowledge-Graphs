@@ -13,7 +13,9 @@ from .config import settings
 # Ensure sqlite directory exists if using sqlite
 if settings.DATABASE_URL.startswith("sqlite"):
     db_path = settings.DATABASE_URL.replace("sqlite:///", "")
-    os.makedirs(os.path.dirname(os.path.abspath(db_path)), exist_ok=True)
+    parent_dir = os.path.dirname(os.path.abspath(db_path))
+    if parent_dir:
+        os.makedirs(parent_dir, exist_ok=True)
     engine = create_engine(
         settings.DATABASE_URL,
         connect_args={"check_same_thread": False},

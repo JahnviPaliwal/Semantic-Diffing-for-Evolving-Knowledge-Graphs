@@ -1,0 +1,22 @@
+{
+  "name": "semantic-diffing-for-evolving-knowledge-graphs",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Production Knowledge Graph Semantic Diffing Engine and Temporal Version Explorer",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && python -m uvicorn app.main:app --reload",
+    "test": "pytest tests/ backend/tests/"
+  },
+  "keywords": [
+    "knowledge-graphs",
+    "semantic-diffing",
+    "fastapi",
+    "react",
+    "groq",
+    "langgraph"
+  ],
+  "author": "Jahnvi Paliwal",
+  "license": "MIT"
+}

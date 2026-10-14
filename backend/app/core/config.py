@@ -22,7 +22,10 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_URL: str = Field(
-        default_factory=lambda: os.getenv("DATABASE_URL", "sqlite:///./data/app.db")
+        default_factory=lambda: os.getenv(
+            "DATABASE_URL",
+            "sqlite:////tmp/app.db" if os.getenv("VERCEL") == "1" else "sqlite:///./data/app.db"
+        )
     )
 
     # Security & JWT
@@ -35,6 +38,7 @@ class Settings(BaseSettings):
 
     # CORS
     CORS_ORIGINS: List[str] = [
+        "*",
         "http://localhost:5173",
         "http://localhost:3000",
         "http://localhost:8080",
@@ -54,13 +58,18 @@ class Settings(BaseSettings):
     GROQ_MODEL: str = Field(default_factory=lambda: os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b"))
     EMBEDDING_MODEL_NAME: str = "all-MiniLM-L6-v2"
     DISABLE_HEAVY_EMBEDDINGS: bool = Field(
-        default_factory=lambda: os.getenv("DISABLE_HEAVY_EMBEDDINGS", "").lower() in ("1", "true", "yes")
+        default_factory=lambda: os.getenv("VERCEL") == "1" or os.getenv("DISABLE_HEAVY_EMBEDDINGS", "").lower() in ("1", "true", "yes")
     )
 
     # File Uploads & Storage Abstraction
     UPLOAD_MAX_BYTES: int = 10 * 1024 * 1024  # 10 MB
     ALLOWED_UPLOAD_EXTENSIONS: List[str] = [".txt", ".pdf", ".docx"]
-    UPLOAD_DIR: str = Field(default_factory=lambda: os.getenv("UPLOAD_DIR", "./data/uploads"))
+    UPLOAD_DIR: str = Field(
+        default_factory=lambda: os.getenv(
+            "UPLOAD_DIR",
+            "/tmp/uploads" if os.getenv("VERCEL") == "1" else "./data/uploads"
+        )
+    )
     STORAGE_BACKEND: str = Field(default_factory=lambda: os.getenv("STORAGE_BACKEND", "local"))
 
     # Graph Database
