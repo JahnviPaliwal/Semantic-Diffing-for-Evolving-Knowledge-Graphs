@@ -2,7 +2,9 @@
 backend/semantic_diff.py
 Entity/relation extraction via Groq + graph diff computation + LLM summary.
 """
-import re, json
+import json
+import re
+
 from groq import Groq
 
 MODEL = 'llama-3.3-70b-versatile'

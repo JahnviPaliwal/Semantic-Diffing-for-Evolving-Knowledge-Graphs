@@ -1,0 +1,25 @@
+{
+  "pair_id": "synthetic_v2_v3",
+  "status": "needs human review",
+  "notes": "Drafted gold diff for Acme Corporation evolution from v2 to v3",
+  "expected_added_entities": [
+    "AI Governance Board",
+    "Elena Rostova",
+    "European Union",
+    "ISO-27001",
+    "London"
+  ],
+  "expected_removed_entities": [
+    "New York"
+  ],
+  "expected_renamed_entities": [],
+  "expected_added_relations": [
+    ["Acme Corporation", "headquartered in", "London"],
+    ["Elena Rostova", "appointed as", "Chief Technology Officer"],
+    ["AI Governance Board", "oversees", "European Union"],
+    ["AcmeSync", "achieved", "ISO-27001"]
+  ],
+  "expected_removed_relations": [
+    ["Acme Corporation", "headquartered in", "New York"]
+  ]
+}

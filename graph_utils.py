@@ -2,14 +2,15 @@
 backend/graph_utils.py
 NetworkX graph construction + Matplotlib diff visualisation + JSON export.
 """
-import io, base64
-import networkx as nx
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.colors import to_rgba
+import base64
+import io
 
+import matplotlib
+import networkx as nx
+
+matplotlib.use('Agg')
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
 
 # ── Palette ──────────────────────────────────────────────────────────────────
 ADD_NODE  = '#1D9E75'

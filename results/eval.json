@@ -1,0 +1,78 @@
+{
+  "benchmark_summary": {
+    "total_pairs_evaluated": 3,
+    "status": "needs human review",
+    "entity_f1_with_resolution": 0.8991,
+    "entity_f1_without_resolution_naive": 0.8732,
+    "false_add_remove_pairs_with_resolution": 0,
+    "false_add_remove_pairs_without_resolution_naive": 2
+  },
+  "pairs": [
+    {
+      "pair_id": "synthetic_v1_v2",
+      "status": "needs human review",
+      "with_resolution": {
+        "entity_precision": 1.0,
+        "entity_recall": 0.9,
+        "entity_f1": 0.9474,
+        "relation_precision": 0.7333,
+        "relation_recall": 0.9167,
+        "relation_f1": 0.8148,
+        "false_add_remove_pairs": 0
+      },
+      "without_resolution_naive": {
+        "entity_precision": 0.7692,
+        "entity_recall": 1.0,
+        "entity_f1": 0.8695,
+        "relation_precision": 0.7059,
+        "relation_recall": 1.0,
+        "relation_f1": 0.8276,
+        "false_add_remove_pairs": 2
+      }
+    },
+    {
+      "pair_id": "synthetic_v2_v3",
+      "status": "needs human review",
+      "with_resolution": {
+        "entity_precision": 0.6,
+        "entity_recall": 1.0,
+        "entity_f1": 0.75,
+        "relation_precision": 0.4167,
+        "relation_recall": 1.0,
+        "relation_f1": 0.5883,
+        "false_add_remove_pairs": 0
+      },
+      "without_resolution_naive": {
+        "entity_precision": 0.6,
+        "entity_recall": 1.0,
+        "entity_f1": 0.75,
+        "relation_precision": 0.4167,
+        "relation_recall": 1.0,
+        "relation_f1": 0.5883,
+        "false_add_remove_pairs": 0
+      }
+    },
+    {
+      "pair_id": "real_policy_v1_v2",
+      "status": "needs human review",
+      "with_resolution": {
+        "entity_precision": 1.0,
+        "entity_recall": 1.0,
+        "entity_f1": 1.0,
+        "relation_precision": 0.75,
+        "relation_recall": 1.0,
+        "relation_f1": 0.8571,
+        "false_add_remove_pairs": 0
+      },
+      "without_resolution_naive": {
+        "entity_precision": 1.0,
+        "entity_recall": 1.0,
+        "entity_f1": 1.0,
+        "relation_precision": 0.75,
+        "relation_recall": 1.0,
+        "relation_f1": 0.8571,
+        "false_add_remove_pairs": 0
+      }
+    }
+  ]
+}

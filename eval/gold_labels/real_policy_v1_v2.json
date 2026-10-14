@@ -1,0 +1,23 @@
+{
+  "pair_id": "real_policy_v1_v2",
+  "status": "needs human review",
+  "notes": "Drafted gold diff for Terms of Service compliance and jurisdiction shift",
+  "expected_added_entities": [
+    "American Arbitration Association",
+    "European Union Supervisory Authorities",
+    "GDPR",
+    "State of Delaware"
+  ],
+  "expected_removed_entities": [
+    "San Francisco",
+    "State of California"
+  ],
+  "expected_renamed_entities": [],
+  "expected_added_relations": [
+    ["Acme Cloud Services", "adheres to", "GDPR"],
+    ["Agreement", "governed by", "State of Delaware"]
+  ],
+  "expected_removed_relations": [
+    ["Agreement", "governed by", "State of California"]
+  ]
+}
